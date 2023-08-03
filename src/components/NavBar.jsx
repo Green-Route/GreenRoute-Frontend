@@ -38,28 +38,32 @@ const Navbar = () => {
     const alt = theme.palette.background.alt;
 
     const fullName = `${user?.firstName}`;
-    
+
     useEffect(() => {
         if (!user) {
             navigate('/welcome');
         }
     }, [user, navigate]);
-    
+
     const carpoolingItems = [
-        { name: 'Passenger',
-        subItems: [
-            { name: '-Book Ride', to: '/passenger/searchride' },
-            { name: '-View Booked Rides', to: '/passenger/viewbookedride' },
-          ],},
-        { name: 'Rider', 
-        subItems: [
-            { name: '-Post Ride', to: '/rider/postride' },
-            { name: '-View Posted Rides', to: '/rider/viewpostedride' },
-          ],},
+        {
+            name: 'Passenger',
+            subItems: [
+                { name: '-Book Ride', to: '/passenger/searchride' },
+                { name: '-View Booked Rides', to: '/passenger/viewbookedride' },
+            ],
+        },
+        {
+            name: 'Rider',
+            subItems: [
+                { name: '-Post Ride', to: '/rider/postride' },
+                { name: '-View Posted Rides', to: '/rider/viewpostedride' },
+            ],
+        },
     ];
     const evChargingStationItems = [
         { name: 'Find a Station', to: '/viewallstation' },
-        { name: 'Add a Station', to: '/admin/addstation' },
+        // { name: 'Add a Station', to: '/admin/addstation' },
     ];
     const windsorTerminalItems = [
         { name: 'Find Bus', to: '/transit/searchnearbystation' },
@@ -163,17 +167,7 @@ const Navbar = () => {
                         alignItems="center"
                         gap="3rem"
                     >
-                        <IconButton
-                            onClick={() => dispatch(setMode())}
-                            sx={{ fontSize: "25px" }}
-                        >
-                            {theme.palette.mode === "dark" ? (
-                                <DarkMode sx={{ fontSize: "25px" }} />
-                            ) : (
-                                <LightMode sx={{ color: dark, fontSize: "25px" }} />
-                            )}
-                        </IconButton>
-                        <div className="button-container">
+                        <div className="button-container" >
                             <Dropdown menuItems={carpoolingItems} label="Carpooling" />
                             <Dropdown menuItems={evChargingStationItems} label="EV Charging Station" />
                             <Dropdown menuItems={windsorTerminalItems} label="Windsor Transit" />
